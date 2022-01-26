@@ -4,45 +4,47 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
+
 
 public class GetResponseTwo {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\selenium-drivers\\Chrome\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.getresponse.com/resources?query=7+Tips+for&i=12&sort=date_desc");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("lang=pl-pl");
 
+
+        WebDriver driver = new ChromeDriver(options);
+
+        GetResponsePOM page = new GetResponsePOM(driver);
+        // uruchomienie pzreglądarki w trybie zarzadzanym przez Selenium, wywołanie dokumentu ze stroną wyboru języka
+        page.open();
+
+       // wywołanie dokumentu ze stroną wyboru języka
+        driver.get("https://www.getresponse.com/change-language?ret=%2F");
         WebElement inputItem;
 
-        inputItem = driver.findElement(By.xpath(" //*[@id=\"newsletter_name\"]"));
-        inputItem.sendKeys("trols wengen");
-        inputItem = driver.findElement(By.xpath("//*[@id=\"newsletter_email\"] "));
-        inputItem.sendKeys("trols.wengen@gmail.com");
-
-        inputItem = driver.findElement(By.xpath("//*[@id=\"newsletter_submit\"]"));
+        // wybór języka - polskiego
+        inputItem = driver.findElement(By.xpath("//*[@id=\"content-wrapper\"]/section/div/div/div[12]/a"));
         inputItem.click();
 
-        WebDriver driver1 = new ChromeDriver();
-        driver1.get("https://www.https://mail.google.com/mail");
+        // test, czy na wywołana strona ma prawidlowy tytuł
+        WebDriverWait wait3 = new WebDriverWait(driver, 3);
+        wait3.until(ExpectedConditions.titleContains ("GetResponse - zestaw"));
 
+        //test, czy na stronie znajduje się tekst z łańcuchem znaków w języku polskim
 
-
-
-
-//        if "kominy":
-//        inputItem = driver.findElement(By.xpath("//*[@id=\"rc-imageselect-target\"]/table/tbody/tr[1]/td[1]/div/div[1]/img "));
-//        inputItem.click();
-//        inputItem = driver.findElement(By.xpath("//*[@id=\"rc-imageselect-target\"]/table/tbody/tr[1]/td[2]/div/div[1]/img"));
-//        inputItem.click();
-//        inputItem = driver.findElement(By.xpath("//*[@id=\"rc-imageselect-target\"]/table/tbody/tr[3]/td[2]/div/div[1]/img"));
-//        inputItem.click();
-//        inputItem = driver.findElement(By.xpath("//*[@id=\"recaptcha-verify-button\"]"));
-//        inputItem.click();
-//
-        driver.close();
-
-
-
-
-
+        WebElement label = driver.findElement(By.xpath("/html/body/header/div/nav/ul/li[1]"));
+        try {
+            assertEquals( "Rozwi\u0105zania", label.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            page.close();
+        }
     }
 }

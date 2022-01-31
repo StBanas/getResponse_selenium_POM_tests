@@ -21,14 +21,14 @@ public class GetResponseTwo {
         WebDriver driver = new ChromeDriver(options);
 
         GetResponsePOM page = new GetResponsePOM(driver);
-        // uruchomienie pzreglądarki w trybie zarzadzanym przez Selenium, wywołanie dokumentu ze stroną wyboru języka
+        // uruchomienie przeglądarki w trybie zarządzanym przez Selenium
         page.open();
 
        // wywołanie dokumentu ze stroną wyboru języka
         driver.get("https://www.getresponse.com/change-language?ret=%2F");
         WebElement inputItem;
 
-        // wybór języka - polskiego
+        // wybór języka polskiego
         inputItem = driver.findElement(By.xpath("//*[@id=\"content-wrapper\"]/section/div/div/div[12]/a"));
         inputItem.click();
 

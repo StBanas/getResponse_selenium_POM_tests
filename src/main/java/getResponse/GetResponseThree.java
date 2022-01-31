@@ -17,6 +17,7 @@ public class GetResponseThree {
 
         inputItem = driver.findElement(By.xpath(" //*[@id=\"newsletter_name\"]"));
         inputItem.sendKeys("trols wengen");
+
         inputItem = driver.findElement(By.xpath("//*[@id=\"newsletter_email\"] "));
         inputItem.sendKeys("trols.wengen@gmail.com");
 

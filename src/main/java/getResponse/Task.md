@@ -18,14 +18,6 @@ Do pisania kodu i przeprowadzenia testów użyte zostały narzedzia:
 2. Przeglądarka Chrom  Wersja 97.0.4692.99  (64-bitowa)
 3. chromedriver : 97.0.4692.71
 
-alternatywnie testowanie przeprowadzono w środowisku:
+Dependencies - użyto Gradle 6.2.2
 
-1. VMBox 6.1
-2. procesor intel coIntel(R) Core(TM) i7-8750H CPU @ 2.20GHz
-3. system operacyjny linux - Ubuntu 20;
 
-Do pisania kodu i przeprowadzenia testów użyte zostały:
-1. IDE - InteliJ;
-2. Przeglądarka Mozilla Firefox Wersja 96.0  (64-bitowa)
-3. geckodriver : 97.0.4692.71
-4. 
